@@ -17,7 +17,8 @@ RTL Design Overview
 The SRAM design focuses on two main operations: 
 1.	Write Operation: When the write enable (we) signal is high, data is written to the specified memory location. 
 2.	Read Operation: When we is low, data is read from the memory location and presented on the data_out signal. 
-img1
+
+![Image](https://github.com/user-attachments/assets/77c35cf9-3f70-4938-8601-8873478c74cc)
              
 The module uses a clock signal (clk) for synchronization, ensuring memory operations occur at the correct time. The design allows for simple and efficient control of memory access.
 Waveform Analysis and Simulation 
