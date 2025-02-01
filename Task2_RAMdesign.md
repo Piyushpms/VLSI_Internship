@@ -25,5 +25,5 @@ Waveform Analysis and Simulation
 The simulation of the design helped validate the functionality of the SRAM module: 
 •	During write operations (we = 1), data is stored at the specified memory address, but the data_out remains unchanged. 
 •	During read operations (we = 0), data_out reflects the value stored at the specified memory address. 
-img2 
-The waveform analysis confirmed the correct behavior of the SRAM, with proper synchronization of the signals.![ram1](https://github.com/user-attachments/assets/5b1b1d00-b603-46a7-be57-d04f6e24c3a8)
+![Image](https://github.com/user-attachments/assets/5aa27de5-34f8-4e27-91f5-eeadc1f12b0a)
+The waveform analysis confirmed the correct behavior of the SRAM, with proper synchronization of the signals.
