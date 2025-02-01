@@ -1,0 +1,16 @@
+# RAM design verilog code 
+module sync_ram (
+    input wire clk,               // Clock signal
+    input wire we,                // Write Enable (1 = Write, 0 = Read)
+    input wire [1:0] addr,        // 2-bit Address (4 locations)
+    input wire [3:0] data_in,     // 4-bit Data Input
+    output reg [3:0] data_out     // 4-bit Data Output
+);
+    reg [3:0] memory [3:0];
+    always @(posedge clk) begin
+        if (we) 
+            memory[addr] <= data_in;  // Write operation
+        else 
+            data_out <= memory[addr]; // Read operation
+    end
+endmodule
