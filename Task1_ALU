@@ -1,3 +1,15 @@
+COMPANY NAME : CODTECH IT SOLUTION
+
+NAME : Piyush Mahesh Sharma
+
+INTERN ID : CT08IPC
+
+DOMAIN : VLSI
+
+BATCH DURATION : January 5th, 2025 to February 5th, 2025
+
+MENTOR NAME : NEELA SANTOSH
+
 An Arithmetic Logic Unit (ALU) is a fundamental component of a CPU that performs arithmetic and logical operations. This 4-bit ALU is implemented in Verilog and supports five basic operations:
 
 Addition (ADD)
@@ -26,3 +38,7 @@ Testbench & Simulation
 
 A testbench is provided to verify the ALU’s functionality by applying different test cases and observing the results.
 The simulation output confirms the correct execution of arithmetic and logical operations.
+
+![Image](https://github.com/user-attachments/assets/3099b685-5c17-46cd-91d8-5b79a4e56273)
+
+![Image](https://github.com/user-attachments/assets/38c3641f-dfb2-4fb6-820a-f2f61f4324ca)
