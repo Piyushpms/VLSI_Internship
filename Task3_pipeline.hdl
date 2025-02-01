@@ -1,0 +1,71 @@
+Verilog Program: 
+module Pipeline_Processor (
+    input clk, reset
+);
+// Instruction Memory
+reg [15:0] instruction_memory [0:31];  
+reg [15:0] PC;  
+
+// Register File
+reg [7:0] registers [0:7];
+// Pipeline Registers
+reg [15:0] IF_ID_IR, IF_ID_PC;
+reg [7:0] ID_EX_A, ID_EX_B;
+reg [2:0] ID_EX_opcode, ID_EX_dest;
+reg [7:0] EX_WB_result;
+reg [2:0] EX_WB_dest;
+// ALU
+reg [7:0] ALU_out;
+// Instruction Fetch (IF)
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        PC <= 0;
+    end else begin
+        IF_ID_IR <= instruction_memory[PC];
+        IF_ID_PC <= PC;
+        PC <= PC + 1;
+    end
+end
+
+// Instruction Decode (ID)
+always @(posedge clk) begin
+    ID_EX_opcode <= IF_ID_IR[15:13];
+    ID_EX_dest <= IF_ID_IR[12:10];
+    ID_EX_A <= registers[IF_ID_IR[9:7]];
+    ID_EX_B <= registers[IF_ID_IR[6:4]];
+end
+
+// Execute (EX)
+always @(posedge clk) begin
+    case (ID_EX_opcode)
+        3'b000: ALU_out <= ID_EX_A + ID_EX_B;  // ADD
+        3'b001: ALU_out <= ID_EX_A - ID_EX_B;  // SUB
+        3'b010: ALU_out <= ID_EX_A & ID_EX_B;  // AND
+        3'b011: ALU_out <= ID_EX_A | ID_EX_B;  // OR
+    endcase
+    EX_WB_result <= ALU_out;
+    EX_WB_dest <= ID_EX_dest;
+end
+
+// Write Back (WB)
+always @(posedge clk) begin
+    registers[EX_WB_dest] <= EX_WB_result;
+end
+endmodule
+
+Testbench code:
+module Pipeline_Processor_tb;
+    reg clk, reset;
+    
+    Pipeline_Processor uut (
+        .clk(clk),
+        .reset(reset)
+    );
+    always #5 clk = ~clk;  // Generate Clock
+    initial begin
+        clk = 0;
+        reset = 1;
+        #10 reset = 0;
+        #100 $stop;
+    end
+endmodule
